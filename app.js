@@ -1,9 +1,9 @@
-//Budget Controller
+//!Budget Controller
 var budgetController = (function() {
     //some code;
 })();
 
-//UI Controller
+//!UI Controller
 var UIController = (function() {
 
     var DOMstrings = {
@@ -31,20 +31,35 @@ var UIController = (function() {
     };
 })();
 
-// GLOBAL APP Controller
+//! GLOBAL APP Controller
 var controller = (function(budgetCtrl, UICtrl) {
     
+    var setupEventListeners = function(){
+
+        var DOM = UICtrl.getDOMstrings();
+
+        document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem) //Click with the mouse on the UI
+
+        document.addEventListener('keypress', function(event) {
+            if(event.keyCode === 13 || event.which === 13) {
+                ctrlAddItem();
+                //console.log ('Sum to the total')
+            } 
+            else //console.log ('You havent\'t press enter, so press enter');
+        });
+    };
+
     var DOM = UICtrl.getDOMstrings();
 
     var ctrlAddItem = function() {
 
-        //To DO List
+        //TODO:
 
         // 1. Get the filed input data
 
         var input = UICtrl.getInput();
 
-        console.log(input);
+        // console.log(input);
 
         // 2.  Add the item to the budget controller
 
@@ -56,16 +71,15 @@ var controller = (function(budgetCtrl, UICtrl) {
 
         console.log('Sombody wants to add something')
 
+    };
+
+    return {
+        init: function() {
+            console.log('Aplication has started')
+            setupEventListeners();
+        }
     }
 
-    document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem) //Click with the mouse on the UI
-
-    document.addEventListener('keypress', function(event) {
-        if(event.keyCode === 13 || event.which === 13) {
-            ctrlAddItem();
-            console.log ('Sum to the total')
-        } 
-        else console.log ('You havent\'t press enter, so press enter');
-    });
-
 })(budgetController, UIController);
+
+controller.init();
