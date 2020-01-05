@@ -1,6 +1,42 @@
 //!Budget Controller
 var budgetController = (function() {
-    //some code;
+    
+    // Make 2 function construction for expenses and incomes.
+    var Expense = function(id, description, value){
+        this.id = id;
+        this.description =  description;
+        this.value = value;
+    };
+    var Income = function(id, description, value){
+        this.id = id;
+        this.description =  description;
+        this.value = value;
+    };
+    
+    var data = {
+        allItems: {
+            exp: [],
+            inc: []
+        },
+        totals: {
+            exp: 0,
+            inc: 0
+        },
+    };
+
+    return {
+        addItem: function(type, des, val) {
+            var newItem;
+            if (type === 'exp') {
+                newItem = new Expense(ID, des, val);
+            }
+            else if (type === 'inc') {
+                newItem = new Income(ID, des, val);
+            }
+
+        }
+    }
+
 })();
 
 //!UI Controller
@@ -83,3 +119,7 @@ var controller = (function(budgetCtrl, UICtrl) {
 })(budgetController, UIController);
 
 controller.init();
+
+function newFunction() {
+        var ;
+    }
